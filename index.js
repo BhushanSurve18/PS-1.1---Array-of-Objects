@@ -18,6 +18,21 @@ const students = [
   { name: 'David', age: 18, grade: 'B' },
 ];
 
+function studentDetail(students){
+  let name ="";
+  for(i=0; i< students.length; i++){
+    if(students[i].age > 18){
+     name = name + students[i].name + ", "
+    }
+  }
+  return name
+}
+
+app.get("/student", (req,res)=>{
+  let result = studentDetail(students);
+  console.log([result]);
+})
+
 //Exercise 2
 
 const products = [
@@ -108,7 +123,7 @@ const sales = [
 ];
 
 function totalrevenue(sales){
-  let totalrevenue =0;
+  let totalrevenue = 0;
   for(let i=0; i<sales.length; i++){
     let quantity = sales[i].quantity;
     let price = sales[i].price;
@@ -123,6 +138,54 @@ app.get("/sales", (req,res)=>{
   console.log({totalrevenue : result.toString()});
 })
 
+
+//Exercise 7
+
+const movies = [
+  { title: 'Movie One', director: 'Director A', rating: 8 },
+  { title: 'Movie Two', director: 'Director B', rating: 7 },
+  { title: 'Movie Three', director: 'Director A', rating: 9 },
+  { title: 'Movie Four', director: 'Director C', rating: 6 }
+];
+
+function moviesByDirector(movies){
+  for(let i=0; i < movies.length; i++){
+    if (movies[i].director === "Director A"){
+     console.log("Title: " + movies[i].title);
+     console.log("Director: "+ movies[i].director);
+    }
+  }
+  }
+
+app.get("/movies", (req,res)=>{
+   let result = moviesByDirector(movies)
+   console.log(result)
+  })
+
+
+  const  cricketers =[
+    {Name: "Virat",  Eden_Gardens: 77, Wankhade_Stadium: 88, Feroz_Shah_Kotla: 45, Chepauk: 74 },
+    {Name: "Rohit",  Eden_Gardens: 64, Wankhade_Stadium: 41, Feroz_Shah_Kotla: 68, Chepauk: 34 },
+    {Name: "Shikhar",  Eden_Gardens: 54, Wankhade_Stadium: 38, Feroz_Shah_Kotla: 72, Chepauk: 44 },
+    {Name: "Rishabh",  Eden_Gardens: 22, Wankhade_Stadium: 27, Feroz_Shah_Kotla: 34, Chepauk: 51 }
+  ]
+
+function getCricketerDetaia(cricketers){
+  for (i=0; i< cricketers.length; i++){
+    console.log("Cricketer: " + cricketers[i].Name);
+    console.log("Eden Gardens: " + cricketers[i].Eden_Gardens);
+    console.log("Wankhade Stadium: " + cricketers[i].Wankhade_Stadium);
+    console.log("Feroz Shah Kotla: " + cricketers[i].Feroz_Shah_Kotla);
+    console.log("Chepauk: " + cricketers[i].Chepauk)
+
+  }
+}
+
+
+  app.get("/cricket", (req,res)=>{
+    let result = getCricketerDetaia(cricketers);
+    console.log(result)
+  })
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
